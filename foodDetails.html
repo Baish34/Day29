@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Food Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Food Database</a>
+        <div id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="dishes.html">Dishes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="foodReport.html">Food Report</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cookingTips.html">Cooking Tips</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <h2 class="container py-3 display-6 fw-normal">Food Details</h2>
+  </header>
+
+  <main>
+    <section id="dishDetail">
+
+    </section>
+
+    <script>
+      let dishes = [
+        {id: "1", name: "Pizza", cuisine: "Italian", ingredients: "Dough, Tomato sauce, Cheese, Toppings", details: "A delicious Italian dish with a variety of toppings."},
+        {id: "2", name: "Sushi", cuisine: "Japanese", ingredients: "Rice, Fish, Seaweed, Vegetables", details: "A delicious Japanese rice dish with a variety of flavors."},
+        {id: "3", name: "Tacos", cuisine: "Mexican", ingredients: "Tortillas, Meat, Salsa, Toppings", details: "A delicious Mexican dish with a variety of toppings."},
+        {id: "4", name: "Pasta Carbonara", cuisine: "Italian", ingredients: "Pasta, Eggs, Cheese, Bacon", details: "A delicious Italian dish with a variety of flavors."},
+        {id: "5", name: "Chocolate Cake", cuisine: "Dessert", ingredients: "Flour, Eggs, Sugar, Cocoa, Chocolate", details: "A delicious Dessert made with a variety of ingredients."},
+        {id: "6", name: "Biryani", cuisine: "Indian", ingredients: "Rice, Meat, Spices, Vegetables", details: "A delicious Indian dish full of flavor and taste."}
+      ]
+
+      function getParameterById(id) {
+        let url = new URL(window.location.href)
+
+        return url.searchParams.get(id)
+      }
+      
+      let dishId = getParameterById('id')
+
+      let dish;
+      for (let i = 0; i < dishes.length; i++) {
+        if (dishes[i].id === dishId) {
+          dish = dishes[i]
+        }
+      }
+
+      let dishDetailElement = document.getElementById('dishDetail');
+      if (dish) {
+        dishDetailElement.innerHTML = `
+        <div  class="container">
+        <div class="card" style="width: 30rem;">
+          <div class="card-body">
+          <div class="px-2">
+                   <h2 class="pt-1">${dish.name}</h2>
+                    <p><strong>Cuisine: </strong>${dish.cuisine}</p>
+                    <p><strong>Ingredients: </strong>${dish.ingredients}</p>
+                    <p><strong>Details: </strong>${dish.details}</p>
+                 </div>
+                  </div>
+                 </div>
+                 </div>
+               `
+      } else {
+         dishDetailElement.innerHTML = 'dish not Found.'
+      }
+    </script>
+  </main>
+</body>
+
+</html>
